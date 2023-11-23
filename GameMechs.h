@@ -26,7 +26,7 @@ class GameMechs
         
         int boardSizeX;
         int boardSizeY;
-        char **gameBoard[];
+        char **gameBoard;
 
     public:
         GameMechs();

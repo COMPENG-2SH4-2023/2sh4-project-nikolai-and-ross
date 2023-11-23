@@ -1,37 +1,53 @@
 #include "GameMechs.h"
 #include "MacUILib.h"
 
-GameMechs::GameMechs()
-{
+GameMechs::GameMechs() {
     boardSizeX = 30;
     boardSizeY = 15;
-    gameBoard = new int *[boardSizeX];
     score = 0;
     loseFlag = false;
     exitFlag = false;
-    input = NULL;
+    input = '\0'; // Set input to null character
+
+    // Allocate memory for the rows of gameBoard
+    gameBoard = new char *[boardSizeX];
+
+    // Initialize each row of the gameBoard
+    for (int i = 0; i < boardSizeX; i++) {
+        gameBoard[i] = new char[boardSizeY];
+
+        // Initialize cells based on boundary conditions
+        for (int j = 0; j < boardSizeY; ++j) {
+            if (i == 0 || i == boardSizeX - 1 || j == 0 || j == boardSizeY - 1) {
+                gameBoard[i][j] = '#';
+            } else {
+                gameBoard[i][j] = ' ';
+            }
+        }
+    }
 }
+
 
 GameMechs::GameMechs(int boardX, int boardY)
 {
 
     boardSizeX = boardX;
     boardSizeY = boardY;
-    gameBoard = new int *[boardSizeX]
+    gameBoard = new char *[boardSizeX];
     score = 0;
     loseFlag = false;
     exitFlag = false;
-    input = GameMechs.getInput();
-    for (i = 0; i < boardSizeX; i++)
-    {
-        for (j = 0; j < boardSizeY; j++)
-        {
-            if (i == 0 || i == boardSizeX - 1 || j == 0 || j == boardSizeY - 1)
-            {
-                gameBoard[i][j]="#";
-            }
-            else
+    input = getInput();
+    for (int i = 0; i < boardSizeX; i++) {
+        gameBoard[i] = new char[boardSizeY];
+
+        // Initialize cells based on boundary conditions
+        for (int j = 0; j < boardSizeY; ++j) {
+            if (i == 0 || i == boardSizeX - 1 || j == 0 || j == boardSizeY - 1) {
+                gameBoard[i][j] = '#';
+            } else {
                 gameBoard[i][j] = ' ';
+            }
         }
     }
 }
@@ -48,16 +64,16 @@ GameMechs::~GameMechs()
 }
 void GameMechs::generateGameboard()
 {
-    for (i = 0; i < boardSizeX; i++)
-    {
-        for (j = 0; j < boardSizeY; j++)
-        {
-            if (i == 0 || i == boardSizeX - 1 || j == 0 || j == boardSizeY - 1)
-            {
-                gameBoard[i][j]="#";
-            }
-            else
+    for (int i = 0; i < boardSizeX; i++) {
+        gameBoard[i] = new char[boardSizeY];
+
+
+        for (int j = 0; j < boardSizeY; ++j) {
+            if (i == 0 || i == boardSizeX - 1 || j == 0 || j == boardSizeY - 1) {
+                gameBoard[i][j] = '#';
+            } else {
                 gameBoard[i][j] = ' ';
+            }
         }
     }
 }
@@ -77,7 +93,7 @@ char GameMechs::getInput()
     {
         input = MacUILib_getChar();
     }
-    return inpput; 
+    return input; 
 }
 
 int GameMechs::getBoardSizeX()
@@ -103,7 +119,7 @@ void GameMechs::setLoseTrue()
 
 void GameMechs::setInput(char this_input)
 {
-    input = this_input
+    input = this_input;
 }
 
 void GameMechs::clearInput()
@@ -113,14 +129,13 @@ void GameMechs::clearInput()
     
 }
 
-int GameMechs::getScore;
+int GameMechs::getScore()
 {
     return score;
 }
 
-void GameMechs::incrementScore;
+void GameMechs::incrementScore()
 {
     score++;
-    return score;
 }
 

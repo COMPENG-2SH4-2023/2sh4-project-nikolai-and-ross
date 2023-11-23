@@ -16,7 +16,7 @@ void DrawScreen(void);
 void LoopDelay(void);
 void CleanUp(void);
 
-
+// objPos player();
 
 int main(void)
 {
@@ -41,12 +41,14 @@ void Initialize(void)
     MacUILib_init();
     MacUILib_clearScreen();
 
+    // player.setObjPos(5,5,'*')
+
     exitFlag = false;
 }
 
 void GetInput(void)
 {
-   
+
 }
 
 void RunLogic(void)
@@ -56,7 +58,17 @@ void RunLogic(void)
 
 void DrawScreen(void)
 {
-    MacUILib_clearScreen();    
+    MacUILib_clearScreen();
+    objPos border[30][15]; // Change to be gamemechanics board size
+
+    for (int i = 0; i < 30; i++){
+        for (int j = 0; j < 15; j++){
+            if (i == 0 || i == 30 || j == 0 || j == 15){
+                border[i][j].setObjPos(i,j,'#');
+                MacUILib_printf("%c", border[i][j].symbol);
+            }
+        }
+    }
 
 }
 
