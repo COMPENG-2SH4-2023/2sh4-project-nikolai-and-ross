@@ -1,6 +1,7 @@
 #include <iostream>
 #include "MacUILib.h"
 #include "objPos.h"
+#include "objPosArrayList.h"
 #include "GameMechs.h"
 #include "Player.h"
 
@@ -45,6 +46,8 @@ void Initialize(void)
     myGM = new GameMechs(30, 15);
     myPlayer = new Player(myGM);
     // myFood = newFood(myGM);
+
+    objPos tempPos(-1, -1, '0'); // temporary food gen
 }
 
 void GetInput(void)
@@ -62,19 +65,32 @@ void RunLogic(void)
 void DrawScreen(void)
 {
     MacUILib_clearScreen();
-    objPos tempPos;
-    myPlayer->getPlayerPos(tempPos);
+
+    bool drawn;
+
+    objPosArrayList* playerBody = myPlayer->getPlayerPos();
+    objPos tempBody;
+
     for (int i = 0; i < myGM->getBoardSizeY(); i++)
     {
         for (int j = 0; j < myGM->getBoardSizeX(); j++)
         {
+            drawn = false;
+
+            for(int k = 0; k < playerBody->getSize(); k++){
+                playerBody->getElement(tempBody, k);
+                if(tempBody.x == j && tempBody.y == i){
+                    MacUILib_printf("%c", tempBody.symbol);
+                    drawn = true;
+                    break;
+                }
+            }
+
+            if(drawn) continue; // if player body was drawn, don't draw below
+
             if (i == 0 || i == myGM->getBoardSizeY()- 1 || j == 0 || j == myGM->getBoardSizeX() - 1)
             {
                 MacUILib_printf("%c",'#');
-            }
-            else if (i == tempPos.y && j == tempPos.x)
-            {
-                MacUILib_printf("%c",tempPos.symbol);
             }
             else
             {
@@ -84,7 +100,12 @@ void DrawScreen(void)
         }
         MacUILib_printf("\n");
     }
-    MacUILib_printf("Score: %d, Player Pos: <%d, %d>\n",myGM->getScore(),tempPos.x,tempPos.y);
+    MacUILib_printf("Score: %d\n",myGM->getScore());
+    MacUILib_printf("Player positions:\n");
+    for(int l = 0; l < playerBody->getSize(); l++){
+        playerBody->getElement(tempBody, l);
+        MacUILib_printf("<%d, %d>\n", tempBody.x, tempBody.y);
+    }
 }
 
 void LoopDelay(void)
