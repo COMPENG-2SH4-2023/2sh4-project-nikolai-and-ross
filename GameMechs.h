@@ -6,9 +6,11 @@
 
 #include "objPos.h"
 #include "objPosArrayList.h"
+#include"Food.h"
+
+// #include "Player.h"
 
 using namespace std;
-
 
 class GameMechs
 {
@@ -18,35 +20,36 @@ class GameMechs
 
     // You will include more data members and member functions to complete your design.
 
-    private:
-        char input;
-        bool exitFlag;
-        bool loseFlag;
-        int score; 
-        
-        int boardSizeX;
-        int boardSizeY;
-        char **gameBoard;
+private:
+    char input;
+    bool exitFlag;
+    bool loseFlag;
+    int score;
 
-    public:
-        GameMechs();
-        GameMechs(int boardX, int boardY);
-        ~GameMechs(); //Maybe needed not sure yet 
-        bool getExitFlagStatus();
-        bool getLoseFlagStatus();
-        void setExitTrue();
-        void setLoseTrue();
-        void generateGameboard();
-        char getInput();
-        void setInput(char this_input);
-        void clearInput();
+    int boardSizeX;
+    int boardSizeY;
+    char **gameBoard;
+    
+    Food *FoodGen;
 
-        int getBoardSizeX();
-        int getBoardSizeY();
-        int getScore();
-        void incrementScore();
-      
+public:
+    GameMechs();
+    GameMechs(int boardX, int boardY);
+    ~GameMechs(); 
+    bool getExitFlagStatus();
+    bool getLoseFlagStatus();
+    void setExitTrue();
+    void setLoseTrue();
+    // void generateGameboard();
+    // void DrawGameboard();
+    char getInput();
+    void setInput(char this_input);
+    void clearInput();
 
+    int getBoardSizeX();
+    int getBoardSizeY();
+    int getScore();
+    void incrementScore();
 };
 
 #endif
