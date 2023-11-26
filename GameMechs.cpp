@@ -33,7 +33,7 @@ GameMechs::GameMechs(int boardX, int boardY)
         gameBoard[i] = new char[boardSizeX];
     }
     srand(time(NULL));
-    foodPos.setObjPos(-1,-1,'.');
+    // foodPos.setObjPos(-1,-1,'.');
 }
 
 // do you need a destructor?

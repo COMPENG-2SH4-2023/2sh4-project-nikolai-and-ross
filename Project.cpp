@@ -44,7 +44,7 @@ void Initialize(void)
 
     myGM = new GameMechs(30, 15);
     myPlayer = new Player(myGM);
-    myFood = newFood(myGM);
+    // myFood = newFood(myGM);
 }
 
 void GetInput(void)

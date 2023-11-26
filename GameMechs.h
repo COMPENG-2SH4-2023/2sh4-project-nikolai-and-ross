@@ -30,7 +30,7 @@ private:
     int boardSizeY;
     char **gameBoard;
     
-    Food *FoodGen;
+    // Food *FoodGen;
 
 public:
     GameMechs();
