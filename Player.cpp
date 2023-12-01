@@ -14,10 +14,10 @@ Player::Player(GameMechs *thisGMRef, Food *thisFoodRef)
     playerPosList->insertHead(tempPos);
 
     //debug 4 segments
-    playerPosList->insertHead(tempPos);
-    playerPosList->insertHead(tempPos);
-    playerPosList->insertHead(tempPos);
-    playerPosList->insertHead(tempPos);
+    for(int i = 0; i < 4; i ++){
+        tempPos.setObjPos(mainGameMechsRef->getBoardSizeX() / 2 + i, mainGameMechsRef->getBoardSizeY() / 2, '@');
+        playerPosList->insertHead(tempPos);
+    }
 }
 
 Player::~Player()
