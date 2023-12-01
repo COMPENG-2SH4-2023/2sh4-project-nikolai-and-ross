@@ -4,7 +4,7 @@ Player::Player(GameMechs *thisGMRef, Food *thisFoodRef)
 {
     mainGameMechsRef = thisGMRef;
     mainFoodRef = thisFoodRef;
-    myDir = STOP;
+    myDir = RIGHT;
 
     // more actions to be included
     objPos tempPos;
@@ -13,7 +13,7 @@ Player::Player(GameMechs *thisGMRef, Food *thisFoodRef)
     playerPosList = new objPosArrayList();
     playerPosList->insertHead(tempPos);
 
-    // debug 4 segments
+    //debug 4 segments
     playerPosList->insertHead(tempPos);
     playerPosList->insertHead(tempPos);
     playerPosList->insertHead(tempPos);
@@ -76,13 +76,12 @@ void Player::movePlayer()
         }
         break;
 
-    case DOWN:
-        currHead.y++;
-        if (currHead.y >= mainGameMechsRef->getBoardSizeY() - 1)
-        {
-            currHead.y = 1;
-        }
-        break;
+        case DOWN:
+            currHead.y++;
+            if(currHead.y >= mainGameMechsRef->getBoardSizeY()){
+                currHead.y = 1;
+            }
+            break;
 
     case LEFT:
         currHead.x--;
@@ -92,14 +91,23 @@ void Player::movePlayer()
         }
         break;
 
-    case RIGHT:
-        currHead.x++;
-        if (currHead.x >= mainGameMechsRef->getBoardSizeX() - 1)
-        {
-            currHead.x = 1;
-        }
-        break;
+        case RIGHT:
+            currHead.x++;
+            if(currHead.x >= mainGameMechsRef->getBoardSizeX()){
+                currHead.x = 1;
+            }
+            break;
     }
+
+    // objPos bodyElement;
+    // for(int i = 0; i < playerPosList->getSize(); i++){
+    //     playerPosList->getElement(bodyElement, i);
+        
+    //     if(currHead.x == bodyElement.x && currHead.y == bodyElement.y){
+    //         mainGameMechsRef->setExitTrue();
+    //         mainGameMechsRef->setLoseTrue();
+    //     }
+    // }
 
     playerPosList->insertHead(currHead);
     playerPosList->removeTail();
@@ -140,7 +148,7 @@ bool Player::checkSelfCollision()
 void Player::increasePlayerLength()
 {
     objPos tempPos;
-    playerPosList->insertHead(tempPos);
+    // playerPosList->insertHead(tempPos);
 }
 
 void Player::updatePlayer(const objPos &currentFood)
@@ -153,10 +161,10 @@ void Player::updatePlayer(const objPos &currentFood)
         increasePlayerLength();
         mainFoodRef->generateFood((getPlayerPos()));
     }
-    if (checkSelfCollision())
-    {
+    // if (checkSelfCollision())
+    // {
 
-        mainGameMechsRef->setLoseTrue();
-        mainGameMechsRef->setExitTrue();
-    }
+    //     mainGameMechsRef->setLoseTrue();
+    //     mainGameMechsRef->setExitTrue();
+    // }
 }
