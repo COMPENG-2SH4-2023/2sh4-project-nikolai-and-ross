@@ -1,52 +1,28 @@
-// #ifndef FOOD_H
-// #define FOOD_H
+#ifndef FOOD_H
+#define FOOD_H
 
-// #include "objPos.h"
-// #include "objPosArrayList.h"
-// #include "GameMechs.h"
-// #include <cstdlib>
-// #include <time.h>
+#include "GameMechs.h"
+#include "Player.h" 
+#include "objPos.h"
+#include "objPosArrayList.h"
 
-// using namespace std;
+#include <cstdlib>
+#include <time.h>
 
-// class Food
-// {
-// private:
-//     objPos foodPos;
-//     // GameMechs *mainGameMechsRef;
+class GameMechs;
+class Player;
 
-// public:
-//     // Food();
-//     ~Food();
-//     void generateFood();
-//     void getFoodPos();
-//     // void generateSpecialFood();
-// };
+class Food
+{
+private:
+    objPos foodPos;
+    GameMechs *mainGameRef;
 
-// #endif
-// Food::Food()
-// {
-//     foodPos.setObjPos(-1, -1, '.');
-// }
+public:
+    Food(GameMechs *thisGMRef);
+    ~Food();
+    objPos getFoodPos(objPos &returnPos);
+    void generateFood(objPosArrayList *blockOff);
+};
 
-// void Food::generateFood(objPos blockOff)
-// {
-//     do
-//     {
-//         int rand_Y = rand() % (mainGameMechsRef->getBoardSizeY() - 2) + 1;
-//         int rand_X = rand() % (mainGameMechsRef->getBoardSizeX() - 2) + 1;
-//         int flag =0;
-//         if(foodPos.isPosEqual())
-//         foodPos.setObjPos(rand_x, rand_y, '.')
-    
-//     }
-//     while()
-// }
-
-// // void Food::getFoodPos(objPos, &returnPos)
-// // {
-// // }
-
-// // void Food::generateSpecialFood()
-// // {
-// // }
+#endif

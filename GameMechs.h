@@ -6,7 +6,7 @@
 
 #include "objPos.h"
 #include "objPosArrayList.h"
-#include"Food.h"
+#include "Food.h"
 
 // #include "Player.h"
 
@@ -29,13 +29,11 @@ private:
     int boardSizeX;
     int boardSizeY;
     char **gameBoard;
-    
-    // Food *FoodGen;
 
 public:
     GameMechs();
     GameMechs(int boardX, int boardY);
-    ~GameMechs(); 
+    ~GameMechs();
     bool getExitFlagStatus();
     bool getLoseFlagStatus();
     void setExitTrue();
