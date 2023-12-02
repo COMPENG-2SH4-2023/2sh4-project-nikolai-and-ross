@@ -151,6 +151,7 @@ void DrawScreen(void)
         foodList.getElement(tempFood, n);
         MacUILib_printf("<%d, %d, %c>\n", tempFood.x, tempFood.y, tempFood.symbol);
     }
+    MacUILib_printf("<%d, %d>\n", currentFoodPos.x, currentFoodPos.y);
 }
 
 void LoopDelay(void)

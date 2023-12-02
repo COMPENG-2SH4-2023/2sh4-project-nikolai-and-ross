@@ -18,6 +18,7 @@ void Food::generateFood(objPosArrayList blockOff)
     int noofFoodItems = rand() % 8 + 3;
     char FoodItems[] = { 'A', '+', 'L', 'o', '.', 'F', 'y', 's', '-' };
     bool unique;
+    specialFood.purgeList();
     for (int i = 0; i < noofFoodItems; i++)
     {
         int foodIndex = rand() % 8;
@@ -27,7 +28,6 @@ void Food::generateFood(objPosArrayList blockOff)
             newFood.x = rand() % (x_size - 2) + 1;
             newFood.y = rand() % (y_size - 2) + 1;
             newFood.symbol = FoodItems[foodIndex];
-
             for (int i = 0; i < blockOff.getSize(); i++)
             {
                 objPos tempPos;
@@ -41,13 +41,13 @@ void Food::generateFood(objPosArrayList blockOff)
             if (unique)
             {
                 // foodPos = newFood;
-                specialFood.removeHead();
+                // specialFood.removeHead();
                 specialFood.insertHead(newFood);
                 break;
             }
-
         } while (true);
     }
+    // specialFood.removeTail();
 }
 objPos Food::getFoodPos(objPos &returnPos)
 {

@@ -26,6 +26,8 @@ class objPosArrayList
         void getHeadElement(objPos &returnPos);
         void getTailElement(objPos &returnPos);
         void getElement(objPos &returnPos, int index);
+
+        void purgeList();
 };
 
 #endif
