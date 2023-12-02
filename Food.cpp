@@ -41,6 +41,7 @@ void Food::generateFood(objPosArrayList blockOff)
             if (unique)
             {
                 // foodPos = newFood;
+                specialFood.removeHead();
                 specialFood.insertHead(newFood);
                 break;
             }

@@ -4,7 +4,7 @@ Player::Player(GameMechs *thisGMRef, Food *thisFoodRef)
 {
     mainGameMechsRef = thisGMRef;
     mainFoodRef = thisFoodRef;
-    myDir = RIGHT;
+    myDir = STOP;
 
     // more actions to be included
     objPos tempPos;

@@ -104,9 +104,10 @@ void DrawScreen(void)
                 }
             }
 
+            foodDrawn = false;
             if (!playerDrawn)
             {
-                foodDrawn = false;
+                // foodDrawn = false;
                 for (int l = 0; l < foodList.getSize(); l++)
                 {
                     foodList.getElement(tempFood, l);
@@ -148,9 +149,8 @@ void DrawScreen(void)
     for (int n = 0; n < foodList.getSize(); n++)
     {
         foodList.getElement(tempFood, n);
-        MacUILib_printf("<%d, %d>\n", tempFood.x, tempFood.y);
+        MacUILib_printf("<%d, %d, %c>\n", tempFood.x, tempFood.y, tempFood.symbol);
     }
-    MacUILib_printf("<%d, %d>\n", currentFoodPos.x, currentFoodPos.y);
 }
 
 void LoopDelay(void)
