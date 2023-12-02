@@ -14,7 +14,6 @@ GameMechs::GameMechs()
     {
         gameBoard[i] = new char[boardSizeX];
     }
-    
 }
 
 GameMechs::GameMechs(int boardX, int boardY)
@@ -31,7 +30,7 @@ GameMechs::GameMechs(int boardX, int boardY)
     {
         gameBoard[i] = new char[boardSizeX];
     }
-   
+
     // foodPos.setObjPos(-1,-1,'.');
 }
 
@@ -111,6 +110,7 @@ char GameMechs::getInput()
     if (input == 27)
     {
         setExitTrue();
+        endGameScreen();
     }
     return input;
 }
@@ -130,6 +130,10 @@ void GameMechs::setExitTrue()
     exitFlag = true;
 }
 
+void GameMechs::setExitFalse()
+{
+    exitFlag = false;
+}
 void GameMechs::setLoseTrue()
 {
     loseFlag = true;
@@ -154,4 +158,37 @@ int GameMechs::getScore()
 void GameMechs::incrementScore()
 {
     score++;
+}
+
+void GameMechs::endGameScreen()
+{
+    if (getExitFlagStatus())
+    {
+        MacUILib_clearScreen();
+        MacUILib_printf("Thank you for playing");
+        MacUILib_Delay(99999);
+        MacUILib_clearScreen();
+    }
+}
+
+void GameMechs::loseGameScreen()
+{
+    if (getLoseFlagStatus())
+    MacUILib_clearScreen();
+    MacUILib_printf("GAME OVER \n");
+    MacUILib_Delay(99999);
+
+    // {
+    //     MacUILib_clearScreen();
+    //     MacUILib_printf("+=========================================================================+");
+    //     MacUILib_printf("|.........................................................................|");
+    //     MacUILib_printf("|..####....####...##...##..######...........####...##..##..######..#####..|");
+    //     MacUILib_printf("|.##......##..##..###.###..##..............##..##..##..##..##......##..##.|");
+    //     MacUILib_printf("|.##.###..######..##.#.##..####............##..##..##..##..####....#####..|");
+    //     MacUILib_printf("|.##..##..##..##..##...##..##..............##..##...####...##......##..##.|");
+    //     MacUILib_printf("|..####...##..##..##...##..######...........####.....##....######..##..##.|");
+    //     MacUILib_printf("|.........................................................................|");
+    //     MacUILib_printf("+=========================================================================+");
+    //     MacUILib_Delay(999999);
+    // }
 }

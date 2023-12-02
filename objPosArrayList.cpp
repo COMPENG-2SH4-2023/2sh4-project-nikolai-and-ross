@@ -10,6 +10,18 @@ objPosArrayList::objPosArrayList()
     arrayCapacity = ARRAY_MAX_CAP;
 }
 
+// copy constructor
+objPosArrayList::objPosArrayList(const objPosArrayList &copyList)
+{
+    arrayCapacity = copyList.arrayCapacity;
+    listSize = copyList.listSize;
+    aList = new objPos[arrayCapacity];
+    for (int i = 0; i < listSize; i++)
+    {
+        aList[i] = copyList.aList[i];
+    }
+}
+
 objPosArrayList::~objPosArrayList()
 {
     delete[] aList;

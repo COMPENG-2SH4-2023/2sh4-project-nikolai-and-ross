@@ -37,6 +37,7 @@ public:
     bool getExitFlagStatus();
     bool getLoseFlagStatus();
     void setExitTrue();
+    void setExitFalse();
     void setLoseTrue();
     // void generateGameboard();
     // void DrawGameboard();
@@ -48,6 +49,9 @@ public:
     int getBoardSizeY();
     int getScore();
     void incrementScore();
+
+    void endGameScreen();
+    void loseGameScreen();
 };
 
 #endif

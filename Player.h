@@ -30,12 +30,12 @@ public:
     Player(GameMechs *thisGMRef, Food *thisFoodRef);
     ~Player();
 
-    objPosArrayList *getPlayerPos(); // Upgrade this in iteration 3.
+    objPosArrayList getPlayerPos(); // Upgrade this in iteration 3.
     void updatePlayerDir();
     void movePlayer();
     void increasePlayerLength();
-    void updatePlayer(const objPos &currentFood);
-    bool checkFoodConsumption(const objPos &currentFood);
+    void updatePlayerState(objPos currentFood);
+    bool checkFoodConsumption(objPos currentFood);
     bool checkSelfCollision();
 
 private:

@@ -1,7 +1,7 @@
 #ifndef OBJPOS_ARRAYLIST_H
 #define OBJPOS_ARRAYLIST_H
 
-#define ARRAY_MAX_CAP 200
+#define ARRAY_MAX_CAP 10
 
 #include "objPos.h"
 
@@ -14,6 +14,7 @@ class objPosArrayList
 
     public:
         objPosArrayList();
+        objPosArrayList(const objPosArrayList &objPosArrayListToCopy);
         ~objPosArrayList();
 
         int getSize();

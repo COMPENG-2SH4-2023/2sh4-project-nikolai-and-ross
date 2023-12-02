@@ -10,37 +10,51 @@ Food::Food(GameMechs *thisGMRef)
 Food::~Food()
 {
 }
-void Food::generateFood(objPosArrayList *blockOff)
+void Food::generateFood(objPosArrayList blockOff)
 {
-    objPos *FoodPresent = new objPos;
+    objPos newFood;
     int x_size = mainGameRef->getBoardSizeX();
     int y_size = mainGameRef->getBoardSizeY();
-    bool itemPresent = true;
-    // objPos *FoodPresent = new objPos;
-
-    while (itemPresent)
+    // int noofFoodItems = rand() % 8 + 3;
+    // char FoodItems[] = { 'A', '+', 'L', 'o', '.', 'F', 'y', 's', '-' };
+    bool unique;
+    // for (int i = 0; i < noofFoodItems; i++)
     {
-        itemPresent = false;
-
-        for (int i = 0; i < blockOff->getSize(); i++)
+        // int foodIndex = rand() % 8;
+        do
         {
-            blockOff->getElement(*FoodPresent, i);
-            if (foodPos.isPosEqual(FoodPresent))
+            unique = true;
+            newFood.x = rand() % (x_size - 2) + 1;
+            newFood.y = rand() % (y_size - 2) + 1;
+            newFood.symbol = 'A';//FoodItems[foodIndex];
+
+            for (int i = 0; i < blockOff.getSize(); i++)
             {
-                itemPresent = true;
+                objPos tempPos;
+                blockOff.getElement(tempPos, i);
+                if (foodPos.isPosEqual(&newFood))
+                {
+                    unique = false;
+                    break;
+                }
+            }
+            if (unique)
+            {
+                foodPos = newFood;
+                // specialFood->insertHead(newFood);
                 break;
             }
-            else
-            {
-                foodPos.x = rand() % (x_size - 2) + 1;
-                foodPos.y = rand() % (y_size - 2) + 1;
-            }
-        }
-    }
-    foodPos.symbol = 'A';
-}
 
+        } while (true);
+    }
+}
 objPos Food::getFoodPos(objPos &returnPos)
 {
     returnPos = foodPos;
+}
+
+objPosArrayList Food::getFoodPos()
+{
+
+    return *specialFood;
 }

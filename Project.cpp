@@ -45,13 +45,13 @@ void Initialize(void)
     myFood = new Food(myGM);
     myPlayer = new Player(myGM, myFood);
 
-    bool foodPresent = true;
-    if (!foodPresent)
-    {
-        objPosArrayList *playerBody = myPlayer->getPlayerPos();
-        myFood->generateFood(playerBody);
-        foodPresent = true;
-    }
+    // bool foodPresent = true;
+    // if (!foodPresent)
+    // {
+    //     objPosArrayList playerBody = myPlayer->getPlayerPos();
+    //     myFood->generateFood(playerBody);
+    //     foodPresent = true;
+    // }
 }
 
 void GetInput(void)
@@ -61,12 +61,11 @@ void GetInput(void)
 
 void RunLogic(void)
 {
-    objPosArrayList *playerBody = myPlayer->getPlayerPos();
     objPos currentFoodPos;
     myPlayer->updatePlayerDir();
     myPlayer->movePlayer();
     myFood->getFoodPos(currentFoodPos);
-    myPlayer->updatePlayer(currentFoodPos);
+    myPlayer->updatePlayerState(currentFoodPos);
     myGM->clearInput();
 }
 
@@ -77,19 +76,21 @@ void DrawScreen(void)
     bool drawn;
     int itemPresent = 0;
     
-    objPosArrayList *playerBody = myPlayer->getPlayerPos();
+    objPosArrayList playerBody = myPlayer->getPlayerPos();
+    // objPosArrayList foodList = myFood->getFoodPos();
     objPos tempBody;
     objPos currentFoodPos;
     myFood->getFoodPos(currentFoodPos);
+    
     for (int i = 0; i < myGM->getBoardSizeY(); i++)
     {
         for (int j = 0; j < myGM->getBoardSizeX(); j++)
         {
 
             drawn = false;
-            for (int k = 0; k < playerBody->getSize(); k++)
+            for (int k = 0; k < playerBody.getSize(); k++)
             {
-                playerBody->getElement(tempBody, k);
+                playerBody.getElement(tempBody, k);
                 if (tempBody.x == j && tempBody.y == i)
                 {
                     MacUILib_printf("%c", tempBody.symbol);
@@ -118,9 +119,9 @@ void DrawScreen(void)
 
     MacUILib_printf("Score: %d\n", myGM->getScore());
     MacUILib_printf("Player positions:\n");
-    for (int l = 0; l < playerBody->getSize(); l++)
+    for (int l = 0; l < playerBody.getSize(); l++)
     {
-        playerBody->getElement(tempBody, l);
+        playerBody.getElement(tempBody, l);
         MacUILib_printf("<%d, %d>\n", tempBody.x, tempBody.y);
     }
     MacUILib_printf("Food positions:\n");

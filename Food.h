@@ -1,28 +1,32 @@
-#ifndef FOOD_H
-#define FOOD_H
+    #ifndef FOOD_H
+    #define FOOD_H
 
-#include "GameMechs.h"
-#include "Player.h" 
-#include "objPos.h"
-#include "objPosArrayList.h"
+    #include "GameMechs.h"
+    #include "Player.h" 
+    #include "objPos.h"
+    #include "objPosArrayList.h"
 
-#include <cstdlib>
-#include <time.h>
+    #include <cstdlib>
+    #include <time.h>
 
-class GameMechs;
-class Player;
+    class GameMechs;
+    class Player;
 
-class Food
-{
-private:
-    objPos foodPos;
-    GameMechs *mainGameRef;
+    class Food
+    {
+    private:
+        objPos foodPos;
+        objPosArrayList *specialFood;
+        GameMechs *mainGameRef;
 
-public:
-    Food(GameMechs *thisGMRef);
-    ~Food();
-    objPos getFoodPos(objPos &returnPos);
-    void generateFood(objPosArrayList *blockOff);
-};
+    public:
+        Food(GameMechs *thisGMRef);
+        objPosArrayList getFoodPos();
+        // depp copy constructor 
+        ~Food();
+        objPos getFoodPos(objPos &returnPos);
+        void generateFood(objPosArrayList blockOff);
+        
+    };
 
-#endif
+    #endif
