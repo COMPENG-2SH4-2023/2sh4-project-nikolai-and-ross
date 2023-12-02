@@ -6,9 +6,10 @@
 
 #include "objPos.h"
 #include "objPosArrayList.h"
+#include "Player.h"
 #include "Food.h"
 
-// #include "Player.h"
+
 
 using namespace std;
 
@@ -50,6 +51,7 @@ public:
     int getScore();
     void incrementScore();
 
+    void LoadingScreen();
     void endGameScreen();
     void loseGameScreen();
 };

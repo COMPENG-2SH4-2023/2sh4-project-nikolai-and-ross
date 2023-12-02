@@ -160,6 +160,19 @@ void GameMechs::incrementScore()
     score++;
 }
 
+void GameMechs::LoadingScreen()
+{
+    int i=0; 
+    while (i<5)
+    {
+        MacUILib_clearScreen();
+        MacUILib_printf("Welcome to Snake");
+        MacUILib_Delay(100000);
+    }
+
+}
+
+
 void GameMechs::endGameScreen()
 {
     if (getExitFlagStatus())

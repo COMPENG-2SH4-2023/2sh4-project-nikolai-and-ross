@@ -34,8 +34,8 @@ public:
     void updatePlayerDir();
     void movePlayer();
     void increasePlayerLength();
-    void updatePlayerState(objPos currentFood);
-    bool checkFoodConsumption(objPos currentFood);
+    void updatePlayerState(objPos currentFood, objPosArrayList foodList);
+    bool checkFoodConsumption(objPos currentFood, objPosArrayList foodList);
     bool checkSelfCollision();
 
 private:

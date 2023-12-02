@@ -45,13 +45,6 @@ void Initialize(void)
     myFood = new Food(myGM);
     myPlayer = new Player(myGM, myFood);
 
-    // bool foodPresent = true;
-    // if (!foodPresent)
-    // {
-    //     objPosArrayList playerBody = myPlayer->getPlayerPos();
-    //     myFood->generateFood(playerBody);
-    //     foodPresent = true;
-    // }
 }
 
 void GetInput(void)
@@ -62,10 +55,11 @@ void GetInput(void)
 void RunLogic(void)
 {
     objPos currentFoodPos;
+    objPosArrayList foodList = myFood->getFoodPosList();
     myPlayer->updatePlayerDir();
-    myPlayer->movePlayer();
     myFood->getFoodPos(currentFoodPos);
-    myPlayer->updatePlayerState(currentFoodPos);
+    myPlayer->updatePlayerState(currentFoodPos, foodList);
+    myPlayer->movePlayer();
     myGM->clearInput();
 }
 
@@ -73,40 +67,63 @@ void DrawScreen(void)
 {
     MacUILib_clearScreen();
 
-    bool drawn;
-    int itemPresent = 0;
-    
+    bool playerDrawn;
+    bool foodDrawn;
+
     objPosArrayList playerBody = myPlayer->getPlayerPos();
-    // objPosArrayList foodList = myFood->getFoodPos();
+    objPosArrayList foodList = myFood->getFoodPosList();
     objPos tempBody;
+    objPos tempFood;
+
+    // Default Food on game start-up extra food is generated after for fun
     objPos currentFoodPos;
     myFood->getFoodPos(currentFoodPos);
-    
+
     for (int i = 0; i < myGM->getBoardSizeY(); i++)
     {
         for (int j = 0; j < myGM->getBoardSizeX(); j++)
         {
+            if (myGM->getScore() < 1)
+            {
+                if (currentFoodPos.x == j && currentFoodPos.y == i)
+                {
+                    MacUILib_printf("%c", currentFoodPos.getSymbol());
+                    continue;
+                }
+            }
 
-            drawn = false;
+            playerDrawn = false;
             for (int k = 0; k < playerBody.getSize(); k++)
             {
                 playerBody.getElement(tempBody, k);
                 if (tempBody.x == j && tempBody.y == i)
                 {
                     MacUILib_printf("%c", tempBody.symbol);
-                    drawn = true;
+                    playerDrawn = true;
                     break;
                 }
             }
-            if (!drawn)
+
+            if (!playerDrawn)
             {
+                foodDrawn = false;
+                for (int l = 0; l < foodList.getSize(); l++)
+                {
+                    foodList.getElement(tempFood, l);
+                    if (tempFood.x == j && tempFood.y == i)
+                    {
+                        MacUILib_printf("%c", tempFood.symbol);
+                        foodDrawn = true;
+                        break;
+                    }
+                }
+            }
+            if (!playerDrawn && !foodDrawn)
+            {
+
                 if (i == 0 || i == myGM->getBoardSizeY() - 1 || j == 0 || j == myGM->getBoardSizeX() - 1)
                 {
                     MacUILib_printf("%c", '#');
-                }
-                else if (i == currentFoodPos.y && j == currentFoodPos.x)
-                {
-                    MacUILib_printf("%c", currentFoodPos.getSymbol());
                 }
                 else
                 {
@@ -117,14 +134,22 @@ void DrawScreen(void)
         MacUILib_printf("\n");
     }
 
+    MacUILib_printf("\n");
     MacUILib_printf("Score: %d\n", myGM->getScore());
+
+    // Debugging
     MacUILib_printf("Player positions:\n");
-    for (int l = 0; l < playerBody.getSize(); l++)
+    for (int m = 0; m < playerBody.getSize(); m++)
     {
-        playerBody.getElement(tempBody, l);
+        playerBody.getElement(tempBody, m);
         MacUILib_printf("<%d, %d>\n", tempBody.x, tempBody.y);
     }
     MacUILib_printf("Food positions:\n");
+    for (int n = 0; n < foodList.getSize(); n++)
+    {
+        foodList.getElement(tempFood, n);
+        MacUILib_printf("<%d, %d>\n", tempFood.x, tempFood.y);
+    }
     MacUILib_printf("<%d, %d>\n", currentFoodPos.x, currentFoodPos.y);
 }
 

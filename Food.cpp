@@ -15,18 +15,18 @@ void Food::generateFood(objPosArrayList blockOff)
     objPos newFood;
     int x_size = mainGameRef->getBoardSizeX();
     int y_size = mainGameRef->getBoardSizeY();
-    // int noofFoodItems = rand() % 8 + 3;
-    // char FoodItems[] = { 'A', '+', 'L', 'o', '.', 'F', 'y', 's', '-' };
+    int noofFoodItems = rand() % 8 + 3;
+    char FoodItems[] = { 'A', '+', 'L', 'o', '.', 'F', 'y', 's', '-' };
     bool unique;
-    // for (int i = 0; i < noofFoodItems; i++)
+    for (int i = 0; i < noofFoodItems; i++)
     {
-        // int foodIndex = rand() % 8;
+        int foodIndex = rand() % 8;
         do
         {
             unique = true;
             newFood.x = rand() % (x_size - 2) + 1;
             newFood.y = rand() % (y_size - 2) + 1;
-            newFood.symbol = 'A';//FoodItems[foodIndex];
+            newFood.symbol = FoodItems[foodIndex];
 
             for (int i = 0; i < blockOff.getSize(); i++)
             {
@@ -40,8 +40,8 @@ void Food::generateFood(objPosArrayList blockOff)
             }
             if (unique)
             {
-                foodPos = newFood;
-                // specialFood->insertHead(newFood);
+                // foodPos = newFood;
+                specialFood.insertHead(newFood);
                 break;
             }
 
@@ -53,8 +53,8 @@ objPos Food::getFoodPos(objPos &returnPos)
     returnPos = foodPos;
 }
 
-objPosArrayList Food::getFoodPos()
+objPosArrayList Food::getFoodPosList()
 {
 
-    return *specialFood;
+    return specialFood;
 }

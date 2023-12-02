@@ -34,18 +34,22 @@ void Player::updatePlayerDir()
     switch (input)
     {
     // process WASD
+    case 'W':
     case 'w':
         if (myDir != DOWN)
             myDir = UP;
         break;
+    case 'A':
     case 'a':
         if (myDir != RIGHT)
             myDir = LEFT;
         break;
+    case 'S':
     case 's':
         if (myDir != UP)
             myDir = DOWN;
         break;
+    case 'D':
     case 'd':
         if (myDir != LEFT)
             myDir = RIGHT;
@@ -98,18 +102,31 @@ void Player::movePlayer()
     playerPosList->insertHead(currHead);
     playerPosList->removeTail();
 }
-bool Player::checkFoodConsumption(objPos currentFood)
+bool Player::checkFoodConsumption(objPos currentFood, objPosArrayList foodList)
 {
 
     bool foodEaten = false;
     objPos headPos;
-
+    objPos tempFood;
     playerPosList->getHeadElement(headPos);
-    if (headPos.x == currentFood.x && headPos.y == currentFood.y)
-    {
-        foodEaten = true;
-    }
 
+    if (mainGameMechsRef->getScore() < 1)
+    {
+        if (headPos.x == currentFood.x && headPos.y == currentFood.y)
+        {
+            foodEaten = true;
+        }
+    }
+    for (int i = 0; i < foodList.getSize(); i++)
+    {
+
+        foodList.getElement(tempFood, i);
+        if (headPos.x == tempFood.x && headPos.y == tempFood.y)
+        {
+            foodEaten = true;
+            break;
+        }
+    }
     return foodEaten;
 }
 
@@ -140,10 +157,10 @@ void Player::increasePlayerLength()
     playerPosList->insertHead(headPos);
 }
 
-void Player::updatePlayerState(objPos currentFood)
+void Player::updatePlayerState(objPos currentFood, objPosArrayList foodList)
 {
     objPosArrayList tempArrayList = getPlayerPos();
-    if (checkFoodConsumption(currentFood))
+    if (checkFoodConsumption(currentFood, foodList))
     {
         mainGameMechsRef->incrementScore();
         increasePlayerLength();

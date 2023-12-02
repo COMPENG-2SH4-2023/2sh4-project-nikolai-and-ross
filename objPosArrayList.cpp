@@ -10,7 +10,7 @@ objPosArrayList::objPosArrayList()
     arrayCapacity = ARRAY_MAX_CAP;
 }
 
-// copy constructor
+
 objPosArrayList::objPosArrayList(const objPosArrayList &copyList)
 {
     arrayCapacity = copyList.arrayCapacity;
