@@ -160,26 +160,47 @@ void GameMechs::incrementScore()
     score++;
 }
 
+void GameMechs::incrementScore(int n)
+{
+    score = score + n;
+}
+
 void GameMechs::LoadingScreen()
 {
-    int i=0; 
-    while (i<5)
+    int i = 0;
+    while (i < 5)
     {
         MacUILib_clearScreen();
         MacUILib_printf("Welcome to Snake");
         MacUILib_Delay(100000);
     }
-
 }
-
 
 void GameMechs::endGameScreen()
 {
     if (getExitFlagStatus())
     {
         MacUILib_clearScreen();
-        MacUILib_printf("Thank you for playing");
         MacUILib_Delay(99999);
+        MacUILib_printf("+========================================================================================+\n");
+        MacUILib_printf("|........................................................................................|\n");
+        MacUILib_printf("|.######..##..##...####...##..##..##..##..........##..##...####...##..##.                |\n");
+        MacUILib_printf("|...##....##..##..##..##..###.##..##.##............####...##..##..##..##.                |\n");
+        MacUILib_printf("|...##....######..######..##.###..####..............##....##..##..##..##.                |\n");
+        MacUILib_printf("|...##....##..##..##..##..##..##..##.##.............##....##..##..##..##.                |\n");
+        MacUILib_printf("|...##....##..##..##..##..##..##..##..##............##.....####....####..                |\n");
+        MacUILib_printf("|........................................................................                |\n");
+        MacUILib_printf("|.######...####...#####...........#####...##.......####...##..##..######..##..##...####..|\n");
+        MacUILib_printf("|.##......##..##..##..##..........##..##..##......##..##...####.....##....###.##..##.....|\n");
+        MacUILib_printf("|.####....##..##..#####...........#####...##......######....##......##....##.###..##.###.|\n");
+        MacUILib_printf("|.##......##..##..##..##..........##......##......##..##....##......##....##..##..##..##.|\n");
+        MacUILib_printf("|.##.......####...##..##..........##......######..##..##....##....######..##..##...####..|\n");
+        MacUILib_printf("|........................................................................................|\n");
+        MacUILib_printf("+========================================================================================+\n");
+        // ASCII Art generated https://www.asciiart.eu/text-to-ascii-art
+        MacUILib_Delay(500000);
+        MacUILib_Delay(500000);
+        MacUILib_Delay(500000);
         MacUILib_clearScreen();
     }
 }
@@ -187,12 +208,9 @@ void GameMechs::endGameScreen()
 void GameMechs::loseGameScreen()
 {
     if (getLoseFlagStatus())
-    MacUILib_clearScreen();
-    MacUILib_printf("GAME OVER \n");
-    MacUILib_Delay(99999);
-
     {
         MacUILib_clearScreen();
+        MacUILib_Delay(99999);
         MacUILib_printf("+=========================================================================+\n");
         MacUILib_printf("|.........................................................................|\n");
         MacUILib_printf("|..####....####...##...##..######...........####...##..##..######..#####..|\n");
@@ -202,8 +220,10 @@ void GameMechs::loseGameScreen()
         MacUILib_printf("|..####...##..##..##...##..######...........####.....##....######..##..##.|\n");
         MacUILib_printf("|.........................................................................|\n");
         MacUILib_printf("+=========================================================================+\n");
+        // ASCII Art generated https://www.asciiart.eu/text-to-ascii-art
         MacUILib_Delay(500000);
         MacUILib_Delay(500000);
         MacUILib_Delay(500000);
+        MacUILib_clearScreen();
     }
 }

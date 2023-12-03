@@ -162,8 +162,7 @@ void Player::updatePlayerState(objPos currentFood, objPosArrayList foodList)
     objPosArrayList tempArrayList = getPlayerPos();
     if (checkFoodConsumption(currentFood, foodList))
     {
-        mainGameMechsRef->incrementScore();
-        increasePlayerLength();
+        foodConsumed(currentFood, foodList);
         mainFoodRef->generateFood(tempArrayList);
     }
     if (checkSelfCollision() == true)
@@ -172,5 +171,68 @@ void Player::updatePlayerState(objPos currentFood, objPosArrayList foodList)
         mainGameMechsRef->loseGameScreen();
         mainGameMechsRef->setExitTrue();
         mainGameMechsRef->endGameScreen();
+    }
+}
+
+void Player::foodConsumed(objPos currentFood, objPosArrayList foodList)
+{
+    if (checkFoodConsumption(currentFood, foodList))
+    {
+        objPos tempFood;
+        for (int i = 0; i < foodList.getSize(); i++)
+        {
+            foodList.getElement(tempFood, i);
+            switch (tempFood.getSymbol())
+            {
+            case 'A':
+                mainGameMechsRef->incrementScore(5);
+                increasePlayerLength();
+                break;
+            case '+':
+                mainGameMechsRef->incrementScore(10);
+                increasePlayerLength();
+                break;
+            case 'L':
+                mainGameMechsRef->incrementScore(20);
+                for (int i = 0; i < 20; i++)
+                {
+                    increasePlayerLength();
+                    break;
+                }
+
+                break;
+            case 'o':
+                mainGameMechsRef->incrementScore();
+                increasePlayerLength();
+                break;
+            case '.':
+                mainGameMechsRef->incrementScore(-10);
+                increasePlayerLength();
+                break;
+            case 'F':
+                mainGameMechsRef->incrementScore(50);
+                increasePlayerLength();
+                break;
+            case 'y':
+                mainGameMechsRef->incrementScore(-40);
+                increasePlayerLength();
+                break;
+            case 's':
+                mainGameMechsRef->incrementScore(10);
+                increasePlayerLength();
+                break;
+            case '-':
+                mainGameMechsRef->incrementScore(-30);
+                increasePlayerLength();
+                break;
+            case 'W':
+                mainGameMechsRef->incrementScore(100);
+                increasePlayerLength();
+                break;
+
+            default:
+                break;
+            }
+        }
     }
 }
