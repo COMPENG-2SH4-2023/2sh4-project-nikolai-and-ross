@@ -3,7 +3,7 @@
 Food::Food(GameMechs *thisGMRef)
 {
     mainGameRef = thisGMRef;
-    foodPos.setObjPos(10, 10, 'o');
+    foodPos.setObjPos(15, 10, 'o');
     srand(time(NULL));
 }
 
@@ -16,12 +16,12 @@ void Food::generateFood(objPosArrayList blockOff)
     int x_size = mainGameRef->getBoardSizeX();
     int y_size = mainGameRef->getBoardSizeY();
     int noofFoodItems = rand() % 8 + 3;
-    char FoodItems[] = {'A', '+', 'L', 'o', '.', 'F', 'y', 's', '-', 'W'};
+    char FoodItems[] = {'g', 'J', 'Y', 'v', 'K', 's', 'i', 'n', 'E', '!'};
     bool unique;
     specialFood.purgeList();
     for (int i = 0; i < noofFoodItems; i++)
     {
-        int foodIndex = rand() % 8;
+        int foodIndex = rand() % 10;
         do
         {
             unique = true;

@@ -35,9 +35,9 @@ public:
     void movePlayer();
     void increasePlayerLength();
     void updatePlayerState(objPos currentFood, objPosArrayList foodList);
-    void foodConsumed(objPos currentFood, objPosArrayList foodList);
     bool checkFoodConsumption(objPos currentFood, objPosArrayList foodList);
     bool checkSelfCollision();
+    void foodConsumed(objPos currentFood, objPosArrayList foodList);
 
 private:
     objPosArrayList *playerPosList; // Upgrade this in iteration 3.

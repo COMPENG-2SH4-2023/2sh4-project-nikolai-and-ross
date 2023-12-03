@@ -8,7 +8,7 @@ Player::Player(GameMechs *thisGMRef, Food *thisFoodRef)
 
     // more actions to be included
     objPos tempPos;
-    tempPos.setObjPos(mainGameMechsRef->getBoardSizeX() / 2, mainGameMechsRef->getBoardSizeY() / 2, '@');
+    tempPos.setObjPos(mainGameMechsRef->getBoardSizeX() / 2, mainGameMechsRef->getBoardSizeY() / 2 - 3, '@');
 
     playerPosList = new objPosArrayList();
     playerPosList->insertHead(tempPos);
@@ -174,65 +174,62 @@ void Player::updatePlayerState(objPos currentFood, objPosArrayList foodList)
     }
 }
 
-void Player::foodConsumed(objPos currentFood, objPosArrayList foodList)
-{
-    if (checkFoodConsumption(currentFood, foodList))
-    {
-        objPos tempFood;
-        for (int i = 0; i < foodList.getSize(); i++)
-        {
-            foodList.getElement(tempFood, i);
-            switch (tempFood.getSymbol())
-            {
-            case 'A':
-                mainGameMechsRef->incrementScore(5);
-                increasePlayerLength();
+void Player::foodConsumed(objPos currentFood, objPosArrayList foodList){
+    objPos tempFood;
+    int scoreNum = 0;
+    bool purge = false;
+    if(currentFood.symbol == 'o'){
+        scoreNum = 1;
+    }
+    for (int i = 0; i < foodList.getSize(); i++){
+        foodList.getElement(tempFood, i);
+        
+        switch (tempFood.getSymbol()){
+            case 'g':
+                scoreNum = 1;
                 break;
-            case '+':
-                mainGameMechsRef->incrementScore(10);
-                increasePlayerLength();
+            case 'J':
+                scoreNum = 2;
                 break;
-            case 'L':
-                mainGameMechsRef->incrementScore(20);
-                for (int i = 0; i < 20; i++)
-                {
-                    increasePlayerLength();
-                    break;
-                }
-
+            case 'Y':
+                scoreNum = 3;
                 break;
-            case 'o':
-                mainGameMechsRef->incrementScore();
-                increasePlayerLength();
+            case 'v':
+                scoreNum = 4;
                 break;
-            case '.':
-                mainGameMechsRef->incrementScore(-10);
-                increasePlayerLength();
-                break;
-            case 'F':
-                mainGameMechsRef->incrementScore(50);
-                increasePlayerLength();
-                break;
-            case 'y':
-                mainGameMechsRef->incrementScore(-40);
-                increasePlayerLength();
+            case 'K':
+                scoreNum = 5;
                 break;
             case 's':
-                mainGameMechsRef->incrementScore(10);
-                increasePlayerLength();
+                scoreNum = 6;
                 break;
-            case '-':
-                mainGameMechsRef->incrementScore(-30);
-                increasePlayerLength();
+            case 'i':
+                scoreNum = 7;
                 break;
-            case 'W':
-                mainGameMechsRef->incrementScore(100);
-                increasePlayerLength();
+            case 'n':
+                scoreNum = 8;
                 break;
-
+            case 'E':
+                scoreNum = 9;
+                break;
+            case 'X':
+                scoreNum = 0;
+                purge = true;
+                break;
             default:
+                scoreNum = 0;
+                purge = false; 
                 break;
-            }
         }
     }
+    if(purge == true){
+        objPos tempHead;
+        playerPosList->getHeadElement(tempHead);
+        playerPosList->purgeList();
+        playerPosList->insertHead(tempHead);
+    }
+    else{
+    increasePlayerLength();
+    }
+    mainGameMechsRef->incrementScore(scoreNum);
 }

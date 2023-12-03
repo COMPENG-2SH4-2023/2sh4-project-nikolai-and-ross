@@ -49,7 +49,6 @@ public:
     int getBoardSizeX();
     int getBoardSizeY();
     int getScore();
-    void incrementScore();
     void incrementScore(int n);
 
     void LoadingScreen();
