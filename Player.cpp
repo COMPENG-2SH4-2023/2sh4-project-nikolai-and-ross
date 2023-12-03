@@ -232,7 +232,8 @@ void Player::foodConsumed(objPos currentFood, objPosArrayList foodList){
         playerPosList->insertHead(tempHead);
     }
     else{
-        if(increaseIters != 1){
+        int size = playerPosList->getSize();
+        if(increaseIters != 1 && size != 1){
             for(int i = 0; i < increaseIters; i ++){
                 increasePlayerLength();
             }
