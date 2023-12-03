@@ -2,17 +2,20 @@
 
 Player::Player(GameMechs *thisGMRef, Food *thisFoodRef)
 {
-    mainGameMechsRef = thisGMRef;
-    mainFoodRef = thisFoodRef;
-    myDir = STOP;
+    // Assign game mechanics and food references
+    mainGameMechsRef = thisGMRef; // Reference to the game mechanics
+    mainFoodRef = thisFoodRef; // Reference to the food items
+    myDir = STOP; // Set player's initial direction as STOP
 
-    // more actions to be included
-    objPos tempPos;
+    // Set up player's initial position
+    objPos tempPos; // Create temporary object position
+    // Calculate and assign the starting position for the player
     tempPos.setObjPos(mainGameMechsRef->getBoardSizeX() / 2, mainGameMechsRef->getBoardSizeY() / 2 - 3, '@');
 
-    playerPosList = new objPosArrayList();
-    playerPosList->insertHead(tempPos);
+    playerPosList = new objPosArrayList(); // Initialize player position list
+    playerPosList->insertHead(tempPos); // Set the initial position as the player's head
 }
+
 
 Player::~Player()
 {
@@ -22,8 +25,7 @@ Player::~Player()
 
 objPosArrayList Player::getPlayerPos()
 {
-
-    return *playerPosList;
+    return *playerPosList; // Returns the player's starting list position
 }
 
 void Player::updatePlayerDir()
