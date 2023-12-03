@@ -180,6 +180,7 @@ void Player::foodConsumed(objPos currentFood, objPosArrayList foodList){
     bool purge = false;
     objPos currHead;
     playerPosList->getHeadElement(currHead);
+    int increaseIters = 1;
 
     for (int i = 0; i < foodList.getSize(); i++){
         foodList.getElement(tempFood, i);
@@ -209,8 +210,9 @@ void Player::foodConsumed(objPos currentFood, objPosArrayList foodList){
             case '8':
                 scoreNum = 8;
                 break;
-            case '9':
+            case '*':
                 scoreNum = 9;
+                increaseIters = 9;
                 break;
             case 'X':
                 scoreNum = -10;
@@ -230,7 +232,14 @@ void Player::foodConsumed(objPos currentFood, objPosArrayList foodList){
         playerPosList->insertHead(tempHead);
     }
     else{
-    increasePlayerLength();
+        if(increaseIters != 1){
+            for(int i = 0; i < increaseIters; i ++){
+                increasePlayerLength();
+            }
+        }
+        else{
+            increasePlayerLength();
+        }
     }
     mainGameMechsRef->incrementScore(scoreNum);
 }
