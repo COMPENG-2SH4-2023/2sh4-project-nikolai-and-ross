@@ -60,9 +60,9 @@ void Initialize(void)
     MacUILib_printf("|....................####...##..##..##..##..##..##..######.........................|\n");
     MacUILib_printf("|..................................................................................|\n");
     MacUILib_printf("+==================================================================================+\n");
-    MacUILib_Delay(99999);
-    MacUILib_Delay(99999);
-    MacUILib_Delay(99999);
+    MacUILib_Delay(500000);
+    MacUILib_Delay(500000);
+    MacUILib_Delay(500000);
     MacUILib_clearScreen();
 }
 
