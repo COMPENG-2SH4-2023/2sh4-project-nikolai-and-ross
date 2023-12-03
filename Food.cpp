@@ -16,7 +16,7 @@ void Food::generateFood(objPosArrayList blockOff)
     int x_size = mainGameRef->getBoardSizeX();
     int y_size = mainGameRef->getBoardSizeY();
     int noofFoodItems = rand() % 8 + 3;
-    char FoodItems[] = {'g', 'J', 'Y', 'v', 'K', 's', 'i', 'n', 'E', '!'};
+    char FoodItems[] = {'g', 'J', 'Y', 'v', 'K', 's', 'i', 'n', 'E', 'X'};
     bool unique;
     specialFood.purgeList();
     for (int i = 0; i < noofFoodItems; i++)
