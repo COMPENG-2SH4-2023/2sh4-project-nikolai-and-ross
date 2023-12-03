@@ -84,10 +84,6 @@ void GameMechs::setExitTrue()
     exitFlag = true;
 }
 
-void GameMechs::setExitFalse()
-{
-    exitFlag = false;
-}
 void GameMechs::setLoseTrue()
 {
     loseFlag = true;
@@ -112,17 +108,6 @@ int GameMechs::getScore()
 void GameMechs::incrementScore(int n)
 {
     score += n;
-}
-
-void GameMechs::LoadingScreen()
-{
-    int i = 0;
-    while (i < 5)
-    {
-        MacUILib_clearScreen();
-        MacUILib_printf("Welcome to Snake");
-        MacUILib_Delay(100000);
-    }
 }
 
 void GameMechs::endGameScreen()
@@ -172,6 +157,7 @@ void GameMechs::loseGameScreen()
         MacUILib_printf("|..####...##..##..##...##..######...........####.....##....######..##..##.|\n");
         MacUILib_printf("|.........................................................................|\n");
         MacUILib_printf("+=========================================================================+\n");
+        // ASCII Art generated https://www.asciiart.eu/text-to-ascii-art
         MacUILib_Delay(500000);
         MacUILib_Delay(500000);
         MacUILib_Delay(500000);

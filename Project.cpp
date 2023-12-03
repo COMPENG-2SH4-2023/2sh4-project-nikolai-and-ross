@@ -60,7 +60,7 @@ void Initialize(void)
     MacUILib_printf("|....................####...##..##..##..##..##..##..######.........................|\n");
     MacUILib_printf("|..................................................................................|\n");
     MacUILib_printf("+==================================================================================+\n");
-    MacUILib_Delay(500000);
+    // ASCII Art generated https://www.asciiart.eu/text-to-ascii-art
     MacUILib_Delay(500000);
     MacUILib_Delay(500000);
     MacUILib_clearScreen();
@@ -94,22 +94,10 @@ void DrawScreen(void)
     objPos tempBody;
     objPos tempFood;
 
-    // Default Food on game start-up extra food is generated after for fun
-    objPos currentFoodPos;
-    myFood->getFoodPos(currentFoodPos);
-
     for (int i = 0; i < myGM->getBoardSizeY(); i++)
     {
         for (int j = 0; j < myGM->getBoardSizeX(); j++)
         {
-            if (myGM->getScore() < 1)
-            {
-                if (currentFoodPos.x == j && currentFoodPos.y == i)
-                {
-                    MacUILib_printf("%c", currentFoodPos.getSymbol());
-                    continue;
-                }
-            }
 
             playerDrawn = false;
             for (int k = 0; k < playerBody.getSize(); k++)

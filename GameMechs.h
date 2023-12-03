@@ -36,7 +36,6 @@ public:
     bool getExitFlagStatus();
     bool getLoseFlagStatus();
     void setExitTrue();
-    void setExitFalse();
     void setLoseTrue();
     char getInput();
     void setInput(char this_input);
@@ -47,7 +46,6 @@ public:
     int getScore();
     void incrementScore(int n);
 
-    void LoadingScreen();
     void endGameScreen();
     void loseGameScreen();
 };

@@ -22,7 +22,6 @@ private:
 public:
     Food(GameMechs *thisGMRef);
     objPosArrayList getFoodPos();
-    // depp copy constructor
     ~Food();
     objPos getFoodPos(objPos &returnPos);
     objPosArrayList getFoodPosList();

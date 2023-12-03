@@ -1,5 +1,7 @@
 #include "Food.h"
 
+// Default constructor for the food class 
+
 Food::Food(GameMechs *thisGMRef)
 {
     objPosArrayList playerBody;
@@ -8,26 +10,29 @@ Food::Food(GameMechs *thisGMRef)
     srand(time(NULL));
     generateFood(playerBody);
 }
-
+// Empty destructor as there are no heep elements
 Food::~Food()
 {
+
 }
+
+
 void Food::generateFood(objPosArrayList blockOff)
 {
     objPos newFood;
     int x_size = mainGameRef->getBoardSizeX();
     int y_size = mainGameRef->getBoardSizeY();
-    int noofFoodItems = rand() % 8 + 3;
-    char FoodItems[] = {'1', '2', '3', '4', '5', '6', '7', '8', '*', 'X'};
+    int noofFoodItems = rand() % 8 + 3; // random number of food items generated each iteration. [3,10]
+    char FoodItems[] = {'1', '2', '3', '4', '5', '6', '7', '8', '*', 'X'}; // Possible food choices.  
     bool unique;
     specialFood.purgeList();
     for (int i = 0; i < noofFoodItems; i++)
     {
-        int foodIndex = rand() % 10;
+        int foodIndex = rand() % 10; // Picknig a random choice 
         do
         {
             unique = true;
-            newFood.x = rand() % (x_size - 2) + 1;
+            newFood.x = rand() % (x_size - 2) + 1;  // generating random coordinates
             newFood.y = rand() % (y_size - 2) + 1;
             newFood.symbol = FoodItems[foodIndex];
             for (int i = 0; i < blockOff.getSize(); i++)
@@ -40,7 +45,7 @@ void Food::generateFood(objPosArrayList blockOff)
                     break;
                 }
             }
-            if (unique)
+            if (unique) // if the cordinates are unique add to an arraylist of valid fooditems which get printed 
             {
                 // foodPos = newFood;
                 // specialFood.removeHead();
@@ -51,6 +56,7 @@ void Food::generateFood(objPosArrayList blockOff)
     }
     // specialFood.removeTail();
 }
+
 objPos Food::getFoodPos(objPos &returnPos)
 {
     returnPos = foodPos;
