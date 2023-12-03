@@ -178,9 +178,6 @@ void Player::foodConsumed(objPos currentFood, objPosArrayList foodList){
     objPos tempFood;
     int scoreNum = 0;
     bool purge = false;
-    if(currentFood.symbol == 'o'){
-        scoreNum = 1;
-    }
     objPos currHead;
     playerPosList->getHeadElement(currHead);
 
@@ -188,35 +185,35 @@ void Player::foodConsumed(objPos currentFood, objPosArrayList foodList){
         foodList.getElement(tempFood, i);
         if(currHead.x == tempFood.x && currHead.y == tempFood.y){
             switch (tempFood.getSymbol()){
-            case 'g':
+            case '1':
                 scoreNum = 1;
                 break;
-            case 'J':
+            case '2':
                 scoreNum = 2;
                 break;
-            case 'Y':
+            case '3':
                 scoreNum = 3;
                 break;
-            case 'v':
+            case '4':
                 scoreNum = 4;
                 break;
-            case 'K':
+            case '5':
                 scoreNum = 5;
                 break;
-            case 's':
+            case '6':
                 scoreNum = 6;
                 break;
-            case 'i':
+            case '7':
                 scoreNum = 7;
                 break;
-            case 'n':
+            case '8':
                 scoreNum = 8;
                 break;
-            case 'E':
+            case '9':
                 scoreNum = 9;
                 break;
             case 'X':
-                scoreNum = 1;
+                scoreNum = -10;
                 purge = true;
                 break;
             default:
