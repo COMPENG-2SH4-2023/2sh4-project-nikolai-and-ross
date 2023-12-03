@@ -5,7 +5,7 @@ Project Preparation Activity 3
 You must watch the briefing video and read through the manual to engage in the development activities.
 
 
-Section: L08, LO2
+Section: L08, L02
 
 MacID: anderr26, jagessan
 
