@@ -22,7 +22,7 @@ void Food::generateFood(objPosArrayList blockOff)
     objPos newFood;
     int x_size = mainGameRef->getBoardSizeX();
     int y_size = mainGameRef->getBoardSizeY();
-    int noofFoodItems = rand() % 6 + 5; // random number of food items generated each iteration. [3,10]
+    int noofFoodItems = rand() % 6 + 5; // random number of food items generated each iteration. [5,10]
     char FoodItems[] = {'1', '2', '3', '4', '5', '6', '7', '8', '*', 'X'}; // Possible food choices.  
     bool unique;
     specialFood.purgeList();
