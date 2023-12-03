@@ -153,8 +153,8 @@ bool Player::checkSelfCollision()
 void Player::increasePlayerLength()
 {
     objPos headPos;
-    playerPosList->getHeadElement(headPos);
-    playerPosList->insertHead(headPos);
+    playerPosList->getTailElement(headPos);
+    playerPosList->insertTail(headPos);
 }
 
 void Player::updatePlayerState(objPos currentFood, objPosArrayList foodList)
