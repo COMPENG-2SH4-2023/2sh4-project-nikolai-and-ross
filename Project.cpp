@@ -45,6 +45,25 @@ void Initialize(void)
     myFood = new Food(myGM);
     myPlayer = new Player(myGM, myFood);
 
+    MacUILib_printf("+==================================================================================+\n");
+    MacUILib_printf("|..................................................................................|\n");
+    MacUILib_printf("|.##...##..######..##.......####....####...##...##..######..........######...####..|\n");
+    MacUILib_printf("|.##...##..##......##......##..##..##..##..###.###..##................##....##..##.|\n");
+    MacUILib_printf("|.##.#.##..####....##......##......##..##..##.#.##..####..............##....##..##.|\n");
+    MacUILib_printf("|.#######..##......##......##..##..##..##..##...##..##................##....##..##.|\n");
+    MacUILib_printf("|..##.##...######..######...####....####...##...##..######............##.....####..|\n");
+    MacUILib_printf("|..................................................................................|\n");
+    MacUILib_printf("|....................####...##..##...####...##..##..######.........................|\n");
+    MacUILib_printf("|...................##......###.##..##..##..##.##...##.............................|\n");
+    MacUILib_printf("|....................####...##.###..######..####....####...........................|\n");
+    MacUILib_printf("|.......................##..##..##..##..##..##.##...##.............................|\n");
+    MacUILib_printf("|....................####...##..##..##..##..##..##..######.........................|\n");
+    MacUILib_printf("|..................................................................................|\n");
+    MacUILib_printf("+==================================================================================+\n");
+    MacUILib_Delay(99999);
+    MacUILib_Delay(99999);
+    MacUILib_Delay(99999);
+    MacUILib_clearScreen();
 }
 
 void GetInput(void)
@@ -139,19 +158,19 @@ void DrawScreen(void)
     MacUILib_printf("Score: %d\n", myGM->getScore());
 
     // Debugging
-//     MacUILib_printf("Player positions:\n");
-//     for (int m = 0; m < playerBody.getSize(); m++)
-//     {
-//         playerBody.getElement(tempBody, m);
-//         MacUILib_printf("<%d, %d>\n", tempBody.x, tempBody.y);
-//     }
-//     MacUILib_printf("Food positions:\n");
-//     for (int n = 0; n < foodList.getSize(); n++)
-//     {
-//         foodList.getElement(tempFood, n);
-//         MacUILib_printf("<%d, %d, %c>\n", tempFood.x, tempFood.y, tempFood.symbol);
-//     }
-//     MacUILib_printf("<%d, %d>\n", currentFoodPos.x, currentFoodPos.y);
+    //     MacUILib_printf("Player positions:\n");
+    //     for (int m = 0; m < playerBody.getSize(); m++)
+    //     {
+    //         playerBody.getElement(tempBody, m);
+    //         MacUILib_printf("<%d, %d>\n", tempBody.x, tempBody.y);
+    //     }
+    //     MacUILib_printf("Food positions:\n");
+    //     for (int n = 0; n < foodList.getSize(); n++)
+    //     {
+    //         foodList.getElement(tempFood, n);
+    //         MacUILib_printf("<%d, %d, %c>\n", tempFood.x, tempFood.y, tempFood.symbol);
+    //     }
+    //     MacUILib_printf("<%d, %d>\n", currentFoodPos.x, currentFoodPos.y);
 }
 
 void LoopDelay(void)

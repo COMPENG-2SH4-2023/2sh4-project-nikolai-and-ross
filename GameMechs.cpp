@@ -45,52 +45,6 @@ GameMechs::~GameMechs()
     delete[] gameBoard;
 }
 
-// void GameMechs::generateGameboard()
-// {
-
-//     for (int i = 0; i < boardSizeY; i++)
-//     {
-//         for (int j = 0; j < boardSizeX; ++j)
-//         {
-//             if (i == 0 || i == boardSizeY - 1 || j == 0 || j == boardSizeX - 1)
-//             {
-//                 gameBoard[i][j] = '#';
-//             }
-//             else
-//             {
-//                 gameBoard[i][j] = ' ';
-//             }
-//         }
-//     }
-// }
-
-// void GameMechs::DrawGameboard()
-// {
-//     objPos tempPos;
-//     myPlayer->getPlayerPos(tempPos);
-//     for (int i = 0; i < myGM->getBoardSizeY(); i++)
-//     {
-//         for (int j = 0; j < myGM->getBoardSizeX(); j++)
-//         {
-//             if (i == 0 || i == myGM->getBoardSizeY() - 1 || j == 0 || j == myGM->getBoardSizeX() - 1)
-//             {
-//                 MacUILib_printf("%c", '#');
-//             }
-//             else if (i == tempPos.y && j == tempPos.x)
-//             {
-//                 MacUILib_printf("%c", tempPos.symbol);
-//             }
-//             else
-//             {
-
-//                 MacUILib_printf("%c", ' ');
-//             }
-//         }
-//         MacUILib_printf("\n");
-//     }
-//     MacUILib_printf("Score: %d, Player Pos: <%d, %d>\n", myGM->getScore(), tempPos.x, tempPos.y);
-// }
-
 bool GameMechs::getExitFlagStatus()
 {
     return exitFlag;
@@ -162,24 +116,39 @@ void GameMechs::incrementScore(int n)
 
 void GameMechs::LoadingScreen()
 {
-    int i=0; 
-    while (i<5)
+    int i = 0;
+    while (i < 5)
     {
         MacUILib_clearScreen();
         MacUILib_printf("Welcome to Snake");
         MacUILib_Delay(100000);
     }
-
 }
-
 
 void GameMechs::endGameScreen()
 {
     if (getExitFlagStatus())
     {
-        MacUILib_clearScreen();
-        MacUILib_printf("Thank you for playing");
         MacUILib_Delay(99999);
+        MacUILib_printf("+========================================================================================+\n");
+        MacUILib_printf("|........................................................................................|\n");
+        MacUILib_printf("|.######..##..##...####...##..##..##..##..........##..##...####...##..##.                |\n");
+        MacUILib_printf("|...##....##..##..##..##..###.##..##.##............####...##..##..##..##.                |\n");
+        MacUILib_printf("|...##....######..######..##.###..####..............##....##..##..##..##.                |\n");
+        MacUILib_printf("|...##....##..##..##..##..##..##..##.##.............##....##..##..##..##.                |\n");
+        MacUILib_printf("|...##....##..##..##..##..##..##..##..##............##.....####....####..                |\n");
+        MacUILib_printf("|........................................................................                |\n");
+        MacUILib_printf("|.######...####...#####...........#####...##.......####...##..##..######..##..##...####..|\n");
+        MacUILib_printf("|.##......##..##..##..##..........##..##..##......##..##...####.....##....###.##..##.....|\n");
+        MacUILib_printf("|.####....##..##..#####...........#####...##......######....##......##....##.###..##.###.|\n");
+        MacUILib_printf("|.##......##..##..##..##..........##......##......##..##....##......##....##..##..##..##.|\n");
+        MacUILib_printf("|.##.......####...##..##..........##......######..##..##....##....######..##..##...####..|\n");
+        MacUILib_printf("|........................................................................................|\n");
+        MacUILib_printf("+========================================================================================+\n");
+        // ASCII Art generated https://www.asciiart.eu/text-to-ascii-art
+        MacUILib_Delay(500000);
+        MacUILib_Delay(500000);
+        MacUILib_Delay(500000);
         MacUILib_clearScreen();
     }
 }
@@ -187,7 +156,7 @@ void GameMechs::endGameScreen()
 void GameMechs::loseGameScreen()
 {
     if (getLoseFlagStatus())
-    MacUILib_clearScreen();
+        MacUILib_clearScreen();
     MacUILib_printf("GAME OVER \n");
     MacUILib_Delay(99999);
 

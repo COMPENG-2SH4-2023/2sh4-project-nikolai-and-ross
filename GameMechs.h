@@ -9,8 +9,6 @@
 #include "Player.h"
 #include "Food.h"
 
-
-
 using namespace std;
 
 class GameMechs
@@ -40,8 +38,6 @@ public:
     void setExitTrue();
     void setExitFalse();
     void setLoseTrue();
-    // void generateGameboard();
-    // void DrawGameboard();
     char getInput();
     void setInput(char this_input);
     void clearInput();

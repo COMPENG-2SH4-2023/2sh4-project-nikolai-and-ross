@@ -1,6 +1,6 @@
 #include "objPosArrayList.h"
 
-// Check lecture contents on general purpose array list construction, 
+// Check lecture contents on general purpose array list construction,
 // and modify it to support objPos array list construction.
 
 objPosArrayList::objPosArrayList()
@@ -9,7 +9,6 @@ objPosArrayList::objPosArrayList()
     listSize = 0;
     arrayCapacity = ARRAY_MAX_CAP;
 }
-
 
 objPosArrayList::objPosArrayList(const objPosArrayList &copyList)
 {
@@ -34,12 +33,14 @@ int objPosArrayList::getSize()
 
 void objPosArrayList::insertHead(objPos thisPos)
 {
-    if(listSize == arrayCapacity){
+    if (listSize == arrayCapacity)
+    {
         return;
     }
 
-    for(int i = listSize; i > 0; i--){
-        aList[i].setObjPos(aList[i-1]);
+    for (int i = listSize; i > 0; i--)
+    {
+        aList[i].setObjPos(aList[i - 1]);
     }
 
     aList[0].setObjPos(thisPos);
@@ -49,7 +50,8 @@ void objPosArrayList::insertHead(objPos thisPos)
 
 void objPosArrayList::insertTail(objPos thisPos)
 {
-    if(listSize == arrayCapacity){
+    if (listSize == arrayCapacity)
+    {
         return;
     }
 
@@ -60,12 +62,14 @@ void objPosArrayList::insertTail(objPos thisPos)
 
 void objPosArrayList::removeHead()
 {
-    if(listSize <= 0){
+    if (listSize <= 0)
+    {
         return;
     }
 
-    for(int i = 0; i < listSize; i ++){
-        aList[i].setObjPos(aList[i+1]);
+    for (int i = 0; i < listSize; i++)
+    {
+        aList[i].setObjPos(aList[i + 1]);
     }
 
     listSize--;
@@ -73,7 +77,8 @@ void objPosArrayList::removeHead()
 
 void objPosArrayList::removeTail()
 {
-    if(listSize <= 0){
+    if (listSize <= 0)
+    {
         return;
     }
 
@@ -87,7 +92,7 @@ void objPosArrayList::getHeadElement(objPos &returnPos)
 
 void objPosArrayList::getTailElement(objPos &returnPos)
 {
-    returnPos.setObjPos(aList[listSize-1]);
+    returnPos.setObjPos(aList[listSize - 1]);
 }
 
 void objPosArrayList::getElement(objPos &returnPos, int index)
@@ -95,6 +100,7 @@ void objPosArrayList::getElement(objPos &returnPos, int index)
     returnPos.setObjPos(aList[index]);
 }
 
-void objPosArrayList::purgeList(){
+void objPosArrayList::purgeList()
+{
     listSize = 0;
 }
